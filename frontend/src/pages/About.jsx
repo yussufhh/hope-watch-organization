@@ -1,194 +1,152 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Users, Heart, Target, Award, Calendar, MapPin } from 'lucide-react';
+import CountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
+
+// Import images
+import aboutHeroImage from '../assets/image3.png';
+import missionImage from '../assets/image1.png';
+import visionImage from '../assets/image2.png';
+import teamImage from '../assets/image4.png';
+import valuesImage from '../assets/image5.png';
 
 const About = () => {
-  // Animation variants
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: '-50px' },
-    transition: { duration: 0.6, ease: 'easeOut' }
-  };
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
-  const staggerContainer = {
-    initial: {},
-    whileInView: {
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const fadeInLeft = {
-    initial: { opacity: 0, x: -60 },
-    whileInView: { opacity: 1, x: 0 },
-    viewport: { once: true, margin: '-50px' },
-    transition: { duration: 0.6, ease: 'easeOut' }
-  };
-
-  const fadeInRight = {
-    initial: { opacity: 0, x: 60 },
-    whileInView: { opacity: 1, x: 0 },
-    viewport: { once: true, margin: '-50px' },
-    transition: { duration: 0.6, ease: 'easeOut' }
-  };
-
-  // Impact stats data
-  const impactStats = [
-    { icon: '🎓', number: '137', label: 'Students Empowered' },
-    { icon: '👩‍🏫', number: '6', label: 'Mentors & Officers' },
-    { icon: '🏫', number: '3', label: 'Schools Engaged' },
-    { icon: '🌍', number: '2', label: 'Counties Reached' }
+  const stats = [
+    { number: 500, label: 'Students Mentored', suffix: '+' },
+    { number: 15, label: 'Partner Schools', suffix: '+' },
+    { number: 3, label: 'Years of Impact', suffix: '' },
+    { number: 95, label: 'Success Rate', suffix: '%' }
   ];
 
-  // Team members data
-  const teamMembers = [
+  const values = [
     {
-      name: 'Fatima Ahmed',
-      role: 'Program Director',
-      description: 'Passionate about educational equity and youth development'
+      icon: <Heart className="w-8 h-8" />,
+      title: 'Compassion',
+      description: 'We approach every student with empathy and understanding'
     },
     {
-      name: 'Mohammed Hassan',
-      role: 'Head Mentor',
-      description: 'Dedicated to guiding students toward their career paths'
+      icon: <Target className="w-8 h-8" />,
+      title: 'Excellence',
+      description: 'We strive for the highest standards in all our programs'
     },
     {
-      name: 'Amina Yusuf',
-      role: 'Community Outreach',
-      description: 'Building bridges between schools and communities'
+      icon: <Users className="w-8 h-8" />,
+      title: 'Community',
+      description: 'We believe in the power of collective growth and support'
     },
     {
-      name: 'David Kimani',
-      role: 'Education Officer',
-      description: 'Specialized in university placement guidance'
+      icon: <Award className="w-8 h-8" />,
+      title: 'Integrity',
+      description: 'We maintain transparency and honesty in everything we do'
     }
   ];
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 bg-gradient-to-br from-[#1D4ED8] via-[#1E40AF] to-[#FBBF24] overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center mix-blend-overlay"></div>
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={aboutHeroImage} 
+            alt="About Hopewatch Revival"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1D4ED8]/80 via-[#1E40AF]/70 to-[#FBBF24]/60"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
+        </div>
         
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center text-white">
-          <motion.h1
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative z-10 text-center text-white px-4 max-w-6xl"
+        >
+          <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold mb-6"
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-5xl md:text-7xl font-bold mb-8"
           >
-            About Hopewatch Revival Organization
+            About <span className="text-[#FBBF24]">Hopewatch</span>
           </motion.h1>
-          <motion.p
+
+          <motion.p 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed"
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="text-xl md:text-2xl mb-12 font-light max-w-4xl mx-auto leading-relaxed"
           >
-            We are a community-driven nonprofit organization dedicated to empowering students through mentorship, 
-            educational guidance, and access to opportunities across Wajir and Garissa counties.
+            Empowering the next generation through education, mentorship, and unwavering support
           </motion.p>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Mission & Vision Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={fadeInUp.viewport}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
-            {/* Mission Card */}
+      {/* Mission & Vision */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Mission */}
             <motion.div
-              variants={fadeInUp}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 group"
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
             >
-              <div className="w-16 h-16 bg-[#1D4ED8] rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#FBBF24] transition-colors duration-300">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+              <div className="bg-white rounded-2xl p-12 shadow-xl">
+                <div className="flex items-center mb-8">
+                  <Target className="w-12 h-12 text-[#1D4ED8] mr-4" />
+                  <h2 className="text-4xl font-bold text-[#1D4ED8]">Our Mission</h2>
+                </div>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  To provide comprehensive guidance, mentorship, and educational support to students 
+                  in underserved communities, helping them navigate university placements through KUCCPS 
+                  and empowering them with life skills for successful futures.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-[#1D4ED8] mb-4">Our Mission</h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                To empower youth through mentorship, education, and opportunity — building a generation of 
-                inspired, confident, and purpose-driven learners.
-              </p>
-            </motion.div>
-
-            {/* Vision Card */}
-            <motion.div
-              variants={fadeInUp}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-gradient-to-br from-[#1D4ED8] to-[#FBBF24] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 text-white"
-            >
-              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-white/90 text-lg leading-relaxed">
-                A future where every student, regardless of background, has equal access to quality education 
-                and guidance to unlock their full potential.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Our Story Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Image Column */}
-            <motion.div
-              variants={fadeInLeft}
-              initial="initial"
-              whileInView="whileInView"
-              viewport={fadeInLeft.viewport}
-              transition={fadeInLeft.transition}
-              className="relative"
-            >
-              <div className="bg-gradient-to-br from-[#1D4ED8] to-[#FBBF24] rounded-2xl p-1">
-                <div className="bg-gray-200 rounded-2xl h-96 lg:h-[500px] bg-[url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center"></div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-[#FBBF24] text-[#1D4ED8] px-6 py-4 rounded-2xl shadow-lg">
-                <div className="text-2xl font-bold">Since 2020</div>
-                <div className="text-sm">Transforming Lives</div>
+              
+              <div className="relative rounded-2xl overflow-hidden shadow-xl group">
+                <img 
+                  src={missionImage} 
+                  alt="Our mission in action - students learning"
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1D4ED8]/60 to-transparent"></div>
               </div>
             </motion.div>
 
-            {/* Text Column */}
+            {/* Vision */}
             <motion.div
-              variants={fadeInRight}
-              initial="initial"
-              whileInView="whileInView"
-              viewport={fadeInRight.viewport}
-              transition={fadeInRight.transition}
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1D4ED8] mb-6">Our Story</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                Hopewatch Revival Organization was founded to bridge the critical gap in access to mentorship 
-                and educational resources in Northern Kenya. Witnessing the immense potential of young students 
-                hindered by limited guidance and opportunities, we embarked on a mission to create meaningful change.
-              </p>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Through community outreach, workshops, and transformative programs like the KUCCPS Placement and 
-                Mentorship Program, we've helped hundreds of students navigate their academic paths, discover 
-                their passions, and unlock their potential for a brighter future.
-              </p>
-              <div className="flex items-center space-x-4">
-                <div className="w-2 h-12 bg-[#FBBF24] rounded-full"></div>
-                <p className="text-lg font-semibold text-[#1D4ED8]">
-                  Building bridges to education, one student at a time
+              <div className="relative rounded-2xl overflow-hidden shadow-xl group">
+                <img 
+                  src={visionImage} 
+                  alt="Our vision - empowering futures"
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#FBBF24]/60 to-transparent"></div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-[#1D4ED8] to-[#FBBF24] rounded-2xl p-12 text-white shadow-xl">
+                <div className="flex items-center mb-8">
+                  <Award className="w-12 h-12 text-white mr-4" />
+                  <h2 className="text-4xl font-bold">Our Vision</h2>
+                </div>
+                <p className="text-lg leading-relaxed opacity-95">
+                  A world where every young person, regardless of their background, has access to 
+                  quality education, mentorship, and the tools they need to achieve their full 
+                  potential and contribute meaningfully to society.
                 </p>
               </div>
             </motion.div>
@@ -196,152 +154,114 @@ const About = () => {
         </div>
       </section>
 
-      {/* Impact Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
+      {/* Stats Section */}
+      <section ref={ref} className="py-24 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={fadeInUp.viewport}
-            transition={fadeInUp.transition}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1D4ED8] mb-4">Our Impact</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Measurable results that demonstrate our commitment to transforming education in Northern Kenya
-            </p>
+            <h2 className="text-5xl font-bold text-[#1D4ED8] mb-6">Our Impact</h2>
+            <p className="text-xl text-gray-600">Making a difference in the lives of students across Wajir County</p>
           </motion.div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={fadeInUp.viewport}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {impactStats.map((stat, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-                className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300"
               >
-                <div className="text-3xl mb-4">{stat.icon}</div>
-                <div className="text-3xl md:text-4xl font-bold text-[#1D4ED8] mb-2">
-                  {stat.number}
+                <div className="text-5xl font-bold text-[#1D4ED8] mb-4">
+                  {inView ? (
+                    <CountUp
+                      start={0}
+                      end={stat.number}
+                      duration={2.5}
+                      separator=","
+                      suffix={stat.suffix}
+                    />
+                  ) : (
+                    `0${stat.suffix}`
+                  )}
                 </div>
-                <div className="text-gray-600 font-medium">
-                  {stat.label}
-                </div>
+                <div className="text-gray-700 font-semibold text-lg">{stat.label}</div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
+      {/* Values Section */}
+      <section className="py-24 px-4 bg-gradient-to-br from-[#1D4ED8] to-[#FBBF24]">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={fadeInUp.viewport}
-            transition={fadeInUp.transition}
-            className="text-center mb-16"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16 text-white"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1D4ED8] mb-4">Meet Our Team</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Passionate individuals dedicated to making a difference in students' lives
-            </p>
+            <h2 className="text-5xl font-bold mb-6">Our Values</h2>
+            <p className="text-xl opacity-90">The principles that guide everything we do</p>
           </motion.div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={fadeInUp.viewport}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            {teamMembers.map((member, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {values.map((value, index) => (
               <motion.div
                 key={index}
-                variants={fadeInUp}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
                 whileHover={{ y: -10 }}
-                className="bg-gray-50 rounded-2xl p-6 text-center group hover:bg-gradient-to-br hover:from-[#1D4ED8] hover:to-[#FBBF24] hover:text-white transition-all duration-500 cursor-pointer"
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center text-white hover:bg-white/20 transition-all duration-300 cursor-pointer"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-[#1D4ED8] to-[#FBBF24] rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold group-hover:bg-white group-hover:text-[#1D4ED8] transition-all duration-300">
-                  {member.name.split(' ').map(n => n[0]).join('')}
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-6">
+                  {value.icon}
                 </div>
-                <h3 className="text-xl font-bold text-[#1D4ED8] mb-2 group-hover:text-white">
-                  {member.name}
-                </h3>
-                <div className="text-[#FBBF24] font-medium mb-3 group-hover:text-white/90">
-                  {member.role}
-                </div>
-                <p className="text-gray-600 text-sm group-hover:text-white/80">
-                  {member.description}
-                </p>
+                <h3 className="text-xl font-bold mb-4">{value.title}</h3>
+                <p className="opacity-90 leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-[#1D4ED8] to-[#1E40AF]">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Location Section */}
+      <section className="py-24 px-4 bg-white">
+        <div className="max-w-5xl mx-auto">
           <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={fadeInUp.viewport}
-            transition={fadeInUp.transition}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Be Part of the Change
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join us in mentoring and inspiring the next generation of leaders. Partner, volunteer, 
-              or donate to help us continue making an impact in Northern Kenya and beyond.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#FBBF24] text-[#1D4ED8] px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Support Our Mission
-            </motion.button>
+            <h2 className="text-5xl font-bold text-[#1D4ED8] mb-6">Our Base</h2>
+            <p className="text-xl text-gray-600">Where we call home and serve our community</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="bg-gradient-to-r from-[#1D4ED8] to-[#FBBF24] rounded-2xl p-12 text-white text-center"
+          >
+            <MapPin className="w-16 h-16 mx-auto mb-6" />
+            <h3 className="text-3xl font-bold mb-4">Ogle Girls Secondary School</h3>
+            <p className="text-xl opacity-90 mb-2">Habaswein Sub-County, Wajir County</p>
+            <p className="text-lg opacity-80">The heart of our mentorship and guidance programs</p>
           </motion.div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="text-2xl font-bold text-[#FBBF24] mb-4">
-            Hopewatch Revival Organization
-          </div>
-          <p className="text-gray-400 mb-6 max-w-md mx-auto">
-            Empowering the next generation through education, mentorship, and opportunity.
-          </p>
-          <div className="flex justify-center space-x-6 mb-6">
-            {['About', 'Programs', 'Impact', 'Contact'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-gray-400 hover:text-[#FBBF24] transition-colors duration-300"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-          <div className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Hopewatch Revival Organization. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
