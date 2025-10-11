@@ -1,0 +1,35 @@
+{
+  "name": "hope-watch-organization",
+  "version": "1.0.0",
+  "description": "Hopewatch Revival - Empowering Young Minds Through Education and Mentorship",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build", 
+    "preview": "cd frontend && npm run preview",
+    "lint": "cd frontend && npm run lint"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yussufhh/hope-watch-organization.git"
+  },
+  "keywords": [
+    "education",
+    "mentorship", 
+    "kuccps",
+    "youth-development",
+    "react",
+    "vite",
+    "tailwindcss"
+  ],
+  "author": "Hopewatch Revival Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yussufhh/hope-watch-organization/issues"
+  },
+  "homepage": "https://github.com/yussufhh/hope-watch-organization#readme"
+}
